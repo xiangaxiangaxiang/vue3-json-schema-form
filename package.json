@@ -14,8 +14,8 @@
         "core-js": "^3.6.5",
         "jss": "^10.5.1",
         "jss-preset-default": "^10.5.1",
-        "vue": "^3.0.0",
-        "vue-jss": "^0.0.4"
+        "vue-jss": "^0.0.4",
+        "vue": "^3.0.5"
     },
     "devDependencies": {
         "@types/jest": "^24.0.19",
