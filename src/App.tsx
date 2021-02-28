@@ -4,11 +4,11 @@ import { createUseStyles } from 'vue-jss'
 import MonacoEditor from './components/MonacoEditor'
 
 // 测试数据
-// import demos from './demos'
+import demos from './demos'
 
 // 导入组件库
-import SchemaForm from '../lib'
-// import themeDefault from '../lib/theme-default'
+import SchemaForm, { ThemeProvider } from '../lib'
+import themeDefault from '../lib/theme-default'
 
 import customFormat from './plugins/customFormat'
 import customKeyword from './plugins/customKeyword'
@@ -100,19 +100,19 @@ export default defineComponent({
             customValidate: undefined
         })
 
-        // // 数据监听，确定 demo 的当前值
-        // watchEffect(() => {
-        //     const index = selectedRef.value
-        //     // demos is test data provide by lib user
-        //     const d: any = demos[index]
-        //     demo.schema = d.schema
-        //     demo.data = d.default
-        //     demo.uiSchema = d.uiSchema
-        //     demo.schemaCode = toJson(d.schema)
-        //     demo.dataCode = toJson(d.default)
-        //     demo.uiSchemaCode = toJson(d.uiSchema)
-        //     demo.customValidate = d.customValidate
-        // })
+        // 数据监听，确定 demo 的当前值
+        watchEffect(() => {
+            const index = selectedRef.value
+            // demos is test data provide by lib user
+            const d: any = demos[index]
+            demo.schema = d.schema
+            demo.data = d.default
+            demo.uiSchema = d.uiSchema
+            demo.schemaCode = toJson(d.schema)
+            demo.dataCode = toJson(d.default)
+            demo.uiSchemaCode = toJson(d.uiSchema)
+            demo.customValidate = d.customValidate
+        })
 
         // const methodRef: Ref<any> = ref()
 
@@ -165,8 +165,8 @@ export default defineComponent({
                 <div class={classes.container}>
                     <div class={classes.menu}>
                         <h1>Vue3 JsonSchema Form</h1>
-                        {/* <div>
-                            {demos.map((demo: any, index: any) => (
+                        <div>
+                            {demos.map((demo, index) => (
                                 <button
                                     class={{
                                         [classes.menuButton]: true,
@@ -178,7 +178,7 @@ export default defineComponent({
                                     {demo.name}
                                 </button>
                             ))}
-                        </div> */}
+                        </div>
                     </div>{' '}
                     {/* /.menu */}
                     <div class={classes.content}>
@@ -207,7 +207,7 @@ export default defineComponent({
                         </div>
                         {/* /.code */}
                         <div class={classes.form}>
-                            {/* <ThemeProvider theme={themeDefault as any}>
+                            <ThemeProvider theme={themeDefault as any}>
                                 <SchemaForm
                                     schema={demo.schema}
                                     value={demo.data}
@@ -219,12 +219,7 @@ export default defineComponent({
                                     customFormats={customFormat}
                                     customKeywords={customKeyword}
                                 />
-                            </ThemeProvider> */}
-                            <SchemaForm
-                                schema={demo.schema}
-                                onChange={handleChange}
-                                value={demo.data}
-                            />
+                            </ThemeProvider>
                             <button onClick={validateForm}>校验</button>
                         </div>
                     </div>

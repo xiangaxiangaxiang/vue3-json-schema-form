@@ -1,27 +1,24 @@
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import NumberField from './fields/NumberField'
 import StringField from './fields/StringField'
+import ObjectField from './fields/ObjectField'
 
-import { Schema, SchemaTypes } from './types'
+import { FieldPropsDefine, SchemaTypes } from './types'
+
+import { retrieveSchema } from './utils'
 
 export default defineComponent({
     name: 'SchemaItem',
-    props: {
-        value: {
-            required: true
-        },
-        schema: {
-            type: Object as PropType<Schema>,
-            required: true
-        },
-        onChange: {
-            type: Function as PropType<(v: any) => void>,
-            required: true
-        }
-    },
+    props: FieldPropsDefine,
     setup(props) {
+        const retrievedSchemaRef = computed(() => {
+            const { schema, rootSchema, value } = props
+            return retrieveSchema(schema, rootSchema, value)
+        })
+
         return () => {
             const type = props.schema.type
+            const retrievedSchema = retrievedSchemaRef.value
 
             let Component: any
 
@@ -34,12 +31,16 @@ export default defineComponent({
                     Component = NumberField
                     break
                 }
+                case SchemaTypes.OBJECT: {
+                    Component = ObjectField
+                    break
+                }
                 default: {
                     console.warn(`${type} is not supported`)
                 }
             }
 
-            return <Component {...props} />
+            return <Component {...props} schema={retrievedSchema} />
         }
     }
 })

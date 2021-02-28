@@ -1,4 +1,4 @@
-// import PasswordWidget from '../components/PasswordWidget'
+import PasswordWidget from '../components/PasswordWidget'
 
 export default {
     name: 'demo',
@@ -34,16 +34,16 @@ export default {
         color: '#861818',
         testkeyword: ''
     },
-    // uiSchema: {
-    //     properties: {
-    //         pass1: {
-    //             widget: PasswordWidget
-    //         },
-    //         pass2: {
-    //             color: 'red'
-    //         }
-    //     }
-    // },
+    uiSchema: {
+        properties: {
+            pass1: {
+                widget: PasswordWidget
+            },
+            pass2: {
+                color: 'red'
+            }
+        }
+    },
     async customValidate(data: any, errors: any) {
         return new Promise(resolve => {
             setTimeout(() => {

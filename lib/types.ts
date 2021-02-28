@@ -1,6 +1,8 @@
-// import { Format, MacroKeywordDefinition } from 'ajv'
-// import { PropType, DefineComponent } from 'vue'
-// import { ErrorSchema } from './validator'
+import { Format, MacroKeywordDefinition } from 'ajv'
+import { PropType, DefineComponent } from 'vue'
+import { ErrorSchema } from './validator'
+
+import { DefineComponent, PropType } from 'vue'
 
 export enum SchemaTypes {
     NUMBER = 'number',
@@ -50,92 +52,92 @@ export interface Schema {
     exclusiveMinimum?: number
 }
 
-// export const FieldPropsDefine = {
-//     schema: {
-//         type: Object as PropType<Schema>,
-//         required: true
-//     },
-//     value: {
-//         required: true
-//     },
-//     onChange: {
-//         type: Function as PropType<(v: any) => void>,
-//         required: true
-//     },
-//     rootSchema: {
-//         type: Object as PropType<Schema>,
-//         required: true
-//     },
-//     errorSchema: {
-//         type: Object as PropType<ErrorSchema>,
-//         required: true
-//     },
-//     uiSchema: {
-//         type: Object as PropType<UISchema>,
-//         required: true
-//     }
-// } as const
+export const FieldPropsDefine = {
+    schema: {
+        type: Object as PropType<Schema>,
+        required: true
+    },
+    value: {
+        required: true
+    },
+    onChange: {
+        type: Function as PropType<(v: any) => void>,
+        required: true
+    },
+    rootSchema: {
+        type: Object as PropType<Schema>,
+        required: true
+    },
+    errorSchema: {
+        type: Object as PropType<ErrorSchema>,
+        required: true
+    },
+    uiSchema: {
+        type: Object as PropType<UISchema>,
+        required: true
+    }
+} as const
 
-// export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
+export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
 
-// export const CommonWidgetPropsDefine = {
-//     value: {},
-//     onChange: {
-//         type: Function as PropType<(v: any) => void>,
-//         required: true
-//     },
-//     errors: {
-//         type: Object as PropType<string[]>
-//     },
-//     schema: {
-//         type: Object as PropType<Schema>,
-//         required: true
-//     },
-//     options: {
-//         type: Object as PropType<{ [keys: string]: any }>
-//     }
-// } as const
+export const CommonWidgetPropsDefine = {
+    value: {},
+    onChange: {
+        type: Function as PropType<(v: any) => void>,
+        required: true
+    },
+    errors: {
+        type: Object as PropType<string[]>
+    },
+    schema: {
+        type: Object as PropType<Schema>,
+        required: true
+    },
+    options: {
+        type: Object as PropType<{ [keys: string]: any }>
+    }
+} as const
 
-// export const SelectionWidgetPropsDefine = {
-//     ...CommonWidgetPropsDefine,
-//     options: {
-//         type: Array as PropType<{ key: string; value: any }[]>,
-//         required: true
-//     }
-// } as const
+export const SelectionWidgetPropsDefine = {
+    ...CommonWidgetPropsDefine,
+    options: {
+        type: Array as PropType<{ key: string; value: any }[]>,
+        required: true
+    }
+} as const
 
-// export type CommonWidgetDefine = DefineComponent<typeof CommonWidgetPropsDefine>
+export type CommonWidgetDefine = DefineComponent<typeof CommonWidgetPropsDefine>
 
-// export type SelectionWidgetDefine = DefineComponent<
-//     typeof SelectionWidgetPropsDefine
-// >
+export type SelectionWidgetDefine = DefineComponent<
+    typeof SelectionWidgetPropsDefine
+>
 
-// export interface Theme {
-//     widgets: {
-//         SelectionWidget: SelectionWidgetDefine
-//         TextWidget: CommonWidgetDefine
-//         NumberWidget: CommonWidgetDefine
-//     }
-// }
+export interface Theme {
+    widgets: {
+        SelectionWidget: SelectionWidgetDefine
+        TextWidget: CommonWidgetDefine
+        NumberWidget: CommonWidgetDefine
+    }
+}
 
-// export type UISchema = {
-//     widget?: string | CommonWidgetDefine
-//     properties?: {
-//         [key: string]: UISchema
-//     }
-//     items?: UISchema | UISchema[]
-// } & {
-//     [key: string]: string
-// }
+export type UISchema = {
+    widget?: string | CommonWidgetDefine
+    properties?: {
+        [key: string]: UISchema
+    }
+    items?: UISchema | UISchema[]
+} & {
+    [key: string]: string
+}
 
-// export interface CustomFormat {
-//     name: string
-//     definition: Format
-//     component: CommonWidgetDefine
-// }
+export interface CustomFormat {
+    name: string
+    definition: Format
+    component: CommonWidgetDefine
+}
 
-// export interface CustomKeyword {
-//     name: string
-//     definition: MacroKeywordDefinition
-//     transformSchema: (originSchema: Schema) => Schema
-// }
+export interface CustomKeyword {
+    name: string
+    definition: MacroKeywordDefinition
+    transformSchema: (originSchema: Schema) => Schema
+}
