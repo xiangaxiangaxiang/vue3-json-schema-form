@@ -2,15 +2,13 @@ import { Format, MacroKeywordDefinition } from 'ajv'
 import { PropType, DefineComponent } from 'vue'
 import { ErrorSchema } from './validator'
 
-import { DefineComponent, PropType } from 'vue'
-
 export enum SchemaTypes {
-    NUMBER = 'number',
-    INTEGER = 'integer',
-    STRING = 'string',
-    OBJECT = 'object',
-    ARRAY = 'array',
-    BOOLEAN = 'boolean'
+    'NUMBER' = 'number',
+    'INTEGER' = 'integer',
+    'STRING' = 'string',
+    'OBJECT' = 'object',
+    'ARRAY' = 'array',
+    'BOOLEAN' = 'boolean'
 }
 
 type SchemaRef = { $ref: string }
